@@ -2,19 +2,28 @@ typealias board = Array<BooleanArray>
 
 // Lights out game: https://daattali.com/shiny/lightsout/
 fun main() {
-    val content: board = Array(3) { BooleanArray(3) { true } }
+    println("\nWelcome to Lights Out. Please select a board size between 3 and 8.")
+    val size = handleInput(from = 3, to = 8)
+    println("selected $size")
+    val content: board = Array(size) { BooleanArray(size) { true } }
 
-    println("Welcome to Lights Out. Select a light using the respective number:")
-    println("1 2 3\n4 5 6\n7 8 9\n")
+    // Usage instructions
+    println("Select a light using the respective number:")
+    content.printNumbers()
     println("Let's go! Select a light.")
-
     content.print()
 
     var selected: Int
     while (!content.checkWon()) {
+        // Ask for a light selection and toggle the lights until the game is won
         println("\nWhich light would you like to toggle?")
-        selected = handleInput()
-        handleLightSelected(selected, content)
+        selected = handleInput(to = size * size)
+        content.handleLightSelected(selected, size)
+
+        // Print the updated board
+        content.print()
+
+        // Congratulate if game is won
         if (content.checkWon()) {
             println("Great! You won!")
         }
@@ -23,7 +32,7 @@ fun main() {
 }
 
 // Handle number inputs
-fun handleInput(): Int {
+fun handleInput(from: Int = 1, to: Int = 9): Int {
     var input = 0
     var inputNumber: Int
     while (input == 0) {
@@ -32,7 +41,7 @@ fun handleInput(): Int {
             inputNumber = readln().toInt()
 
             // Only save the input if it is a number and between 1 and 9
-            if (inputNumber in 1..9) {
+            if (inputNumber in from..to) {
                 input = inputNumber
             } else {
                 println("Please try again with a valid number.")
@@ -45,23 +54,21 @@ fun handleInput(): Int {
 }
 
 // Handle toggling the selected and adjacent lights
-fun handleLightSelected(selected: Int, content: board) {
+fun board.handleLightSelected(selected: Int, size: Int = 3) {
     // Subtract 1 from selected because user counts from 1
     val selectAdjust = selected - 1
     // Calculate row and column from the numbers
-    val row = (selectAdjust - selectAdjust % 3) / 3
-    val column = selectAdjust % 3
+    val row = (selectAdjust - selectAdjust % size) / size
+    val column = selectAdjust % size
 
     // Toggle the selected light
-    content.toggle(row, column)
+    this.toggle(row, column)
 
     // Toggle the adjacent lights if possible
-    if (row > 0) content.toggle(row - 1, column)
-    if (row < 2) content.toggle(row + 1, column)
-    if (column > 0) content.toggle(row, column - 1)
-    if (column < 2) content.toggle(row, column + 1)
-
-    content.print()
+    if (row > 0) this.toggle(row - 1, column)
+    if (row < size - 1) this.toggle(row + 1, column)
+    if (column > 0) this.toggle(row, column - 1)
+    if (column < size - 1) this.toggle(row, column + 1)
 }
 
 // Prints the current game area
@@ -73,6 +80,19 @@ fun board.print() {
             print(" ")
         }
         print("\n") // New line for new row
+    }
+}
+
+// Prints a number for each item
+fun board.printNumbers() {
+    var counter = 1
+    for (row in this) {
+        for (item in row) {
+            print(counter)
+            print(" ")
+            counter++
+        }
+        print("\n")
     }
 }
 
