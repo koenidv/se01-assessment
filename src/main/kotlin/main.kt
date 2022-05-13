@@ -1,11 +1,16 @@
-typealias board = Array<BooleanArray>
+typealias board = Array<IntArray> // 0: Off, 1: Red, 2: Green, 3: Blue
+
+const val RED = "\u001b[31m"
+const val GREEN = "\u001b[32m"
+const val BLUE = "\u001b[34m"
+const val RESETCOLOR = "\u001b[0m"
 
 // Lights out game: https://daattali.com/shiny/lightsout/
 fun main() {
     println("\nWelcome to Lights Out. Please select a board size between 3 and 8.")
     val size = handleInput(from = 3, to = 8)
     println("selected $size")
-    val content: board = Array(size) { BooleanArray(size) { true } }
+    val content: board = Array(size) { IntArray(size) { 1 } }
 
     // Usage instructions
     println("Select a light using the respective number:")
@@ -76,7 +81,14 @@ fun board.print() {
     for (row in this) {
         for (item in row) {
             // For each row and item, print the corresponding circle
-            print(if (item) "⚫" else "⚪")
+            print(
+                when (item) {
+                    1 -> "$RED⚫$RESETCOLOR"
+                    2 -> "$GREEN⚫$RESETCOLOR"
+                    3 -> "$BLUE⚫$RESETCOLOR"
+                    else -> "⚪"
+                }
+            )
             print(" ")
         }
         print("\n") // New line for new row
@@ -99,7 +111,9 @@ fun board.printNumbers() {
 // Checks if the game is won, e.g. all lights are off
 fun board.checkWon() = this.all { it.all { false } }
 
-// Toggles an item by row and column
+// Increases an item at a row and column by 1, or resets to 0
+// if end of range is reached
 fun board.toggle(row: Int, column: Int) {
-    this[row][column] = !this[row][column]
+    this[row][column] += 1
+    if (this[row][column] > 3) this[row][column] = 0
 }

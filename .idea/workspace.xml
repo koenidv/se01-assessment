@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Exercise 1">
+    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Exercise 2, variable board size">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +39,10 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -63,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652442266452</updated>
-      <workItem from="1652442267691" duration="4902000" />
+      <workItem from="1652442267691" duration="5869000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1652442378664</created>
@@ -79,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652447894640</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Exercise 2, variable board size">
+      <created>1652448703443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652448703443</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +111,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Exercise 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exercise 1" />
+    <MESSAGE value="Exercise 2, variable board size" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exercise 2, variable board size" />
   </component>
 </project>
