@@ -10,7 +10,7 @@ fun main() {
     println("\nWelcome to Lights Out. Please select a board size between 3 and 8.")
     val size = handleInput(from = 3, to = 8)
     println("selected $size")
-    val content: board = Array(size) { IntArray(size) { 1 } }
+    val content = generateBoardEasy(size)
 
     // Usage instructions
     println("Select a light using the respective number:")
@@ -33,7 +33,20 @@ fun main() {
             println("Great! You won!")
         }
     }
+}
 
+// Generate a random board, the easy way
+// Do this by creating an empty board, then doing random moves on it.
+fun generateBoardEasy(size: Int): board {
+    val content: board = Array(size) { IntArray(size) { 1 } }
+
+    // For a random amount of moves between size^2 and size^2*10
+    for (i in 0..(size * size..size * size * 10).random()) {
+        // Do a random move within the board bounds
+        content.handleLightSelected((1..size * size).random(), size)
+    }
+
+    return content
 }
 
 // Handle number inputs

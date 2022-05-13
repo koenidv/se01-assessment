@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Exercise 2, variable board size">
+    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Exercise 3, multiple colors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652442266452</updated>
-      <workItem from="1652442267691" duration="5869000" />
+      <workItem from="1652442267691" duration="7409000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1652442378664</created>
@@ -91,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652448703443</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Exercise 3, multiple colors">
+      <created>1652449651064</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652449651064</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +118,7 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Exercise 1" />
     <MESSAGE value="Exercise 2, variable board size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exercise 2, variable board size" />
+    <MESSAGE value="Exercise 3, multiple colors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exercise 3, multiple colors" />
   </component>
 </project>
