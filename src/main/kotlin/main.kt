@@ -1,6 +1,6 @@
 import LIGHTSTATES.*
 
-typealias Board = Array<Array<LIGHTSTATES>> // 0: Off, 1: Red, 2: Green, 3: Blue
+typealias Board = Array<Array<Light>> // 0: Off, 1: Red, 2: Green, 3: Blue
 
 const val RESETCOLOR = "\u001b[0m"
 
@@ -24,8 +24,15 @@ fun main() {
     LightsOffController()
 }
 
-abstract class BoardBaseModel(val size: Int, initState: LIGHTSTATES) {
-    val board: Board = Array(size) { Array(size) { initState } }
+class Light(var state: LIGHTSTATES, private val states: Array<LIGHTSTATES>) {
+    fun toggle() {
+        state = states[(states.indexOf(state) + 1) % states.size]
+    }
+}
+
+abstract class BoardBaseModel(val size: Int) {
+    val board = initBoard()
+    abstract fun initBoard(): Board
 
     init {
         // For a random amount of moves between size^2 and size^2*10
@@ -42,47 +49,34 @@ abstract class BoardBaseModel(val size: Int, initState: LIGHTSTATES) {
         this.updateLight(position)
 
         // Toggle the adjacent lights if possible
-        if (position.row > 0) {
+        if (position.row > 0)
             this.updateLight(position.up())
-            if (position.row < size - 1)
-                this.updateLight(position.down())
-        }
-        if (position.column > 0) {
+        if (position.row < size - 1)
+            this.updateLight(position.down())
+        if (position.column > 0)
             this.updateLight(position.left())
-            if (position.column < size - 1)
-                this.updateLight(position.right())
-        }
+        if (position.column < size - 1)
+            this.updateLight(position.right())
     }
 
     private fun updateLight(position: Position) {
-        set(position, getNextState(get(position)))
+        board[position.row][position.column].toggle()
     }
-
-    private fun set(position: Position, state: LIGHTSTATES) {
-        board[position.row][position.column] = state
-    }
-
-    private fun get(position: Position) = board[position.row][position.column]
-
-    abstract fun getNextState(currentState: LIGHTSTATES): LIGHTSTATES
 
     abstract fun checkWon(): Boolean
 }
 
-class BoardMonochrome(size: Int) : BoardBaseModel(size, WHITE) {
-    override fun getNextState(currentState: LIGHTSTATES) =
-        if (currentState == OFF) WHITE else OFF
+class BoardMonochrome(size: Int) : BoardBaseModel(size) {
+    override fun initBoard() = Array(size) { Array(size) { Light(WHITE, arrayOf(OFF, WHITE)) } }
 
-    override fun checkWon() = board.all { it.all { state -> state == OFF } }
+    override fun checkWon() = board.all { it.all { light -> light.state == OFF } }
 }
 
-class BoardColorful(size: Int) : BoardBaseModel(size, BLUE) {
+class BoardColorful(size: Int) : BoardBaseModel(size) {
     private val states = arrayOf(WHITE, RED, GREEN, BLUE)
+    override fun initBoard() = Array(size) { Array(size) { Light(BLUE, states) } }
 
-    override fun getNextState(currentState: LIGHTSTATES) =
-        states[states.indexOf(currentState) + 1]
-
-    override fun checkWon() = board.all { it.all { state -> state == WHITE } }
+    override fun checkWon() = board.all { it.all { light -> light.state == WHITE } }
 }
 
 open class View {
@@ -110,7 +104,7 @@ open class View {
     }
 }
 
-class ConfigView() : View() {
+class ConfigView : View() {
     fun getColorInput(): Boolean {
         var input = ""
         while (input != "y" && input != "n") {
@@ -133,12 +127,14 @@ class ConfigView() : View() {
 class BoardView(private val model: BoardBaseModel) : View() {
     fun print() {
         model.board.forEach { row ->
-            println(row.joinToString(separator = " ") { "${it.displayColor}${it.symbol}$RESETCOLOR" })
+            println(row.joinToString(separator = " ") {
+                "${it.state.displayColor}${it.state.symbol}$RESETCOLOR"
+            })
         }
     }
 
     fun printNumbers() {
-        var counter = 0
+        var counter = 1
         model.board.forEach { row ->
             println(row.joinToString(separator = " ") { counter++.toString() })
         }
@@ -165,9 +161,9 @@ class BoardView(private val model: BoardBaseModel) : View() {
     }
 }
 
-class LightsOffController() {
-    var model: BoardBaseModel
-    var view: BoardView
+class LightsOffController {
+    private var model: BoardBaseModel
+    private var view: BoardView
 
     init {
         val config = ConfigView()

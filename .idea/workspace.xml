@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Not working yet: Exercise 4, complex method to generate random boards">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a7ef2125-d3de-4e55-a911-519a664697a8" name="Changes" comment="Light Class">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +91,7 @@
       <workItem from="1672168940498" duration="156000" />
       <workItem from="1677100756867" duration="478000" />
       <workItem from="1684075856316" duration="3664000" />
-      <workItem from="1684079584395" duration="3798000" />
+      <workItem from="1684079584395" duration="7553000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1652442378664</created>
@@ -122,7 +121,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652449651064</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Introduce MVC &amp; Inheritance">
+      <created>1684084510876</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684084510876</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Introduce MVC &amp; Inheritance">
+      <created>1684084590370</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684084590370</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Light Class">
+      <created>1684088708790</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684088708790</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +164,8 @@
     <MESSAGE value="Exercise 1" />
     <MESSAGE value="Exercise 2, variable board size" />
     <MESSAGE value="Exercise 3, multiple colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exercise 3, multiple colors" />
+    <MESSAGE value="Introduce MVC &amp; Inheritance" />
+    <MESSAGE value="Light Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Light Class" />
   </component>
 </project>
